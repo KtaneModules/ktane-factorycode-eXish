@@ -693,16 +693,13 @@ public class factoryCodeScript : MonoBehaviour {
 		List<string> list2 = new List<string>();
 		foreach (string text3 in enumerable)
 		{
-			if (!text3.Equals(answer))
+			text2 = text3.Replace(serialFirstLetter, string.Empty);
+			string text4 = answer;
+			for (int j = 0; j < text4.Length; j++)
 			{
-				text2 = text3.Replace(serialFirstLetter, string.Empty);
-				string text4 = answer;
-				for (int j = 0; j < text4.Length; j++)
-				{
-					text2 = text2.Replace(text4[j].ToString(), string.Empty);
-				}
-				list2.Add(text2);
+				text2 = text2.Replace(text4[j].ToString(), string.Empty);
 			}
+			list2.Add(text2);
 		}
 		IEnumerable<string> enumerable2 = from word in list2
 										  where word.Length == 1 || (word.Length == 2 && word[0] == word[1])
@@ -742,10 +739,12 @@ public class factoryCodeScript : MonoBehaviour {
 				num = 0;
 			}
 		}
-		else if (list2.Count() > 0 && !list2.ElementAt(0).Equals(string.Empty))
+		else if (list2.Count() > 1)
 		{
-			text2 = list2.ToArray()[UnityEngine.Random.Range(0, list2.Count() - 1)].ToString();
-			text2 = text2[UnityEngine.Random.Range(0, text2.Count() - 1)].ToString();
+			text2 = list2.ToArray()[UnityEngine.Random.Range(0, list2.Count())].ToString();
+			while (text2.Equals(""))
+				text2 = list2.ToArray()[UnityEngine.Random.Range(0, list2.Count())].ToString();
+			text2 = text2[UnityEngine.Random.Range(0, text2.Count())].ToString();
 		}
 		else
 		{
@@ -760,7 +759,7 @@ public class factoryCodeScript : MonoBehaviour {
 				{
 					text += " ";
 				}
-				text += text2[UnityEngine.Random.Range(0, text2.Count() - 1)];
+				text += text2[UnityEngine.Random.Range(0, text2.Count())];
 				text2 = text2.Replace(text.Last().ToString(), string.Empty);
 			}
 			string[] array = new string[]
