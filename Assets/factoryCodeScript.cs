@@ -717,6 +717,15 @@ public class factoryCodeScript : MonoBehaviour {
 		{
 			text6 += str;
 		}
+		string text7 = string.Empty;
+		foreach (string str in list2)
+		{
+			text7 += str;
+		}
+		foreach (char ch in deadLetters)
+        {
+			text7 = text7.Replace(ch.ToString(), string.Empty);
+        }
 		int num = 0;
 		int num2 = 0;
 		if (text6.Length > 0)
@@ -739,12 +748,9 @@ public class factoryCodeScript : MonoBehaviour {
 				num = 0;
 			}
 		}
-		else if (list2.Count() > 1)
+		else if (text7.Length > 0)
 		{
-			text2 = list2.ToArray()[UnityEngine.Random.Range(0, list2.Count())].ToString();
-			while (text2.Equals(""))
-				text2 = list2.ToArray()[UnityEngine.Random.Range(0, list2.Count())].ToString();
-			text2 = text2[UnityEngine.Random.Range(0, text2.Count())].ToString();
+			text2 = text7[UnityEngine.Random.Range(0, text7.Count())].ToString();
 		}
 		else
 		{
