@@ -686,21 +686,27 @@ public class factoryCodeScript : MonoBehaviour {
 		IEnumerable<string> enumerable = from word in wordList
 										 where word[serialLetterPosition].Equals(serialFirstLetter[0]) && word.IndexOf(serialFirstLetter) == word.LastIndexOf(serialFirstLetter)
 										 select word;
-		answer = enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Count()));
-		logAnswer = answer;
-		answer = answer.Replace(serialFirstLetter, string.Empty);
-		string text2 = string.Empty;
-		List<string> list2 = new List<string>();
-		foreach (string text3 in enumerable)
+		string text2;
+		List<string> list2;
+		do
 		{
-			text2 = text3.Replace(serialFirstLetter, string.Empty);
-			string text4 = answer;
-			for (int j = 0; j < text4.Length; j++)
+			answer = enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Count()));
+			logAnswer = answer;
+			answer = answer.Replace(serialFirstLetter, string.Empty);
+			text2 = string.Empty;
+			list2 = new List<string>();
+			foreach (string text3 in enumerable)
 			{
-				text2 = text2.Replace(text4[j].ToString(), string.Empty);
+				text2 = text3.Replace(serialFirstLetter, string.Empty);
+				string text4 = answer;
+				for (int j = 0; j < text4.Length; j++)
+				{
+					text2 = text2.Replace(text4[j].ToString(), string.Empty);
+				}
+				list2.Add(text2);
 			}
-			list2.Add(text2);
 		}
+		while (list2.Count(x => x == "") > 1);
 		IEnumerable<string> enumerable2 = from word in list2
 										  where word.Length == 1 || (word.Length == 2 && word[0] == word[1])
 										  select word;
