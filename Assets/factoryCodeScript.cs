@@ -640,7 +640,7 @@ public class factoryCodeScript : MonoBehaviour {
 
 	private void setup()
 	{
-		bool flag = false;
+		bool flag;
 		string text = string.Empty;
 		List<int> list = new List<int>
 			{
@@ -762,8 +762,10 @@ public class factoryCodeScript : MonoBehaviour {
 		{
 			text2 = string.Empty;
 		}
+		string text8 = text2;
 		do
 		{
+			flag = false;
 			text2 += answer;
 			while (text2.Count() > 0)
 			{
@@ -861,6 +863,8 @@ public class factoryCodeScript : MonoBehaviour {
 				if (text.Replace(" ", string.Empty).ToLower().Contains(value))
 				{
 					flag = true;
+					text2 = text8;
+					break;
 				}
 			}
 		}
